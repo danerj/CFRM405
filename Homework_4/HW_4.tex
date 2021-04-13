@@ -1,0 +1,186 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+\title{CFRM Homework 4}
+\author{Dane Johnson}
+\date{\today}
+\maketitle
+
+1. Let $A = \begin{bmatrix}
+1 & 1 & 0 \\ 1 & 4 & 1 \\ -2 & 1 & 1
+\end{bmatrix} \,. $ \\\\
+
+(a) $ A
+\sim \begin{bmatrix}
+1 & 1 & 0 \\ 0 & 3 & 1 \\ 0 & 3 & 1
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 1 & 0 \\ 0 & 3 & 1 \\ 0 & 0 & 0
+\end{bmatrix} \,.\; A
+$ is now upper triangular with two pivots. \\
+
+(b) Let $ b = (1,6,3)^T $ (to match dimensions). The system $A\vec{x} = \vec{b}$ can be solved by augmenting $A$ with $b$:
+
+$$
+[A|\vec{b}] = \begin{bmatrix}
+1 & 1 & 0 & 1 \\ 1 & 4 & 1 & 6 \\ -2 & 1 & 1 & 3
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 1 & 0 & 1 \\ 0 & 3 & 1 & 5 \\ 0 & 3 & 1 & 5
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 1 & 0 & 1 \\ 0 & 3 & 1 & 5 \\ 0&0&0&0
+\end{bmatrix} \;.
+$$
+This shows that the system has infinite solutions. If we let $\vec{x} = (x_1, x_2, x_3)^T$, then from the reduce matrix above we know that the solutions have the form $x_2 = \frac{5-x_3}{3}, x_1 = 1- x_2 = 1 - \frac{5-x_3}{3}$ where $x_3 \in \mathbb{R}$ is a free variable (although everything here is real we could actually even say $x_3 \in \mathbb{C}$).\\
+
+(c) Let $ b = (1,6,5)^T $ (to match dimensions). The system $A\vec{x} = \vec{b}$ can be solved by augmenting $A$ with $b$:
+
+$$
+[A|\vec{b}] = \begin{bmatrix}
+1 & 1 & 0 & 1 \\ 1 & 4 & 1 & 6 \\ -2 & 1 & 1 & 5
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 1 & 0 & 1 \\ 0 & 3 & 1 & 5 \\ 0 & 3 & 1 & 7
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 1 & 0 & 1 \\ 0 & 3 & 1 & 5 \\ 0&0&0&2
+\end{bmatrix} \;.
+$$
+This system has no solutions. The reason is that we have found through reduction that in order for $\vec{x} = (x_1,x_2,x_3)^T$ to be a solution,  it must be the case that $0x_3 = 0 = 2$ according to the reduced matrix's last row. But $\nexists \, x_3$ such that $0x_3 = 2$. So the system is inconsistent and has no solution. \\
+
+(d) Since the system described in part (b) has infinite solutions, all of the form $x_2 = \frac{5-x_3}{3}, x_1 = 1 - \frac{5-x_3}{3}$ for $\vec{x} = (x_1, x_2, x_3)^T$,
+we get two solutions by taking first $x_3 = 5$ and then $x_3 = 0$:
+$$ \begin{pmatrix}
+1 \\ 0 \\ 5
+\end{pmatrix} \;,
+\begin{pmatrix}
+\frac{2}{3} \\[2pt] \frac{5}{3} \\[2pt] 0
+\end{pmatrix} \;.$$
+
+However, as we have seen, the system described in part (c) has no solutions to find.\\
+
+(e) $A$ is not invertible. There are many equivalent ways of seeing this, but in this problem we have established that it is not true that for each $\vec{b} \in \mathbb{R}^3$ that there exists a unique solution $\vec{x}$ to the equation $A\vec{x} = \vec{b}$. We have seen that there may actually be no solutions or infinite solutions. So $A$, which executes a map $f : \mathbb{R}^3 \longrightarrow \mathbb{R}^3$ (or $\mathbb{C}^3$ if we like) that is not a bijection, is not an invertible matrix.\\
+
+2. Suppose $AB = I, CA = I$, where $I$ is the $nxn$ identity matrix.\\
+
+(a) $A,B,C$ are all $nxn$ matrices. To see this note that $AB = I$ shows us that $A$ is $nxr$ and $B$ is $rxn$ (where $r$ is yet an unknown postive integer). Also, $CA = I$ shows us that $C$ is of dimension $nxq$ and $A$ is of dimension $qxn$. But then since we know $q=n$ from the last sentence we may conclude $A$ and $C$ must both be $nxn$. Finally since we now know that $A$ is $nxn$ we must have $B$ of dimension $nxn$ so that $AB$ is defined.\\
+
+(b) $B = IB = (CA)B = C(AB) = CI = C$. Therefore $B = C$. \\
+
+(c) The matrix $A$ is invertible iff there exists a matrix, denoted $A^{-1}$ with the property that $AA^{-1} = A^{-1}A = I$. From parts (b), (c) we see that the matrix $B \; (=C)$ has this property. So $A$ is invertible and $A^{-1} = B$.\\
+
+3. Let $A$ be a square matrix such that $A^2 = A$ (i.e. $A$ is a projector). Then we have the following equalites:
+
+$$ (I - A)^2 = I^2 - 2IA + A^2 = I - 2A + A = I - A$$
+\begin{align*}
+(I-A)^7 & = (I-A)(I-A)^2(I-A)^2(I-A)^2 \\ 
+&= (I-A)(I-A)(I-A)(I-A) \\
+&= (I-A)^2(I-A)^2 \\ 
+&= (I-A)(I-A) \quad (by\,the\,last\,part)\\ 
+&= (I-A)^2 \\
+&= (I-A)
+\end{align*}
+
+4.\\
+
+(a)
+$$ -3\begin{pmatrix}
+1 \\ 2 \\ 3
+\end{pmatrix}
++ 2\begin{pmatrix}
+6 \\ 4 \\ 2
+\end{pmatrix}
+= \begin{pmatrix}
+9 \\ 2 \\ -5
+\end{pmatrix}
+$$
+
+(b)
+$$ A = \begin{bmatrix}
+1 & 6 & 9 \\ 2 & 4 & 2 \\ 3 & 2 & -5
+\end{bmatrix}
+\sim \begin{bmatrix}
+1 & 0 & -3 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+\end{bmatrix}$$
+From this reduction (which I did on paper to solve part (a)) we see that there are two pivots.\\
+
+5. Suppose $A$ is a 6x20 matrix and $B$ is a 20x7 matrix.\\
+
+(a) The dimensions of $C = AB$ are 6x7.\\
+
+(b) Suppose $A$,$B$, and $C$ are partitioned as shown below and that we know $A_{11}$ is 2x10, $B_{22}$ is 4x3 and $C$ is ?x4.
+
+\[
+  A = \left[\begin{array}{@{}c|c|c@{}}
+    A_{11} & A_{12} & A_{13} \\ \hline
+    A_{21} & A_{22} & A_{23}
+  \end{array}\right]
+\]
+\[
+  B = \left[\begin{array}{@{}c|c@{}}
+    B_{11} & B_{12} \\ \hline
+    B_{21} & B_{22}  \\ \hline
+    B_{31} & B_{32}
+  \end{array}\right]
+\]
+\[
+  C = \left[\begin{array}{@{}c|c@{}}
+    C_{11} & C_{12} \\ \hline
+    C_{21} & C_{22}  \\
+  \end{array}\right]
+\]
+
+Since $A_{11}$ is 2x10 and $C$ is ?x4, $B_{11}$ must be 10x4. So $C_{11}$ is 2x4. Since $B_{22}$ is 4x3, $B_{21}$ must be 4x4 and so $A_{12}$ is 2x4. We can continue to fill in missing information making the assumption that if, for example, $A_{11}$ has $2$ rows then so must $A_{12}$ and $A_{13}$. Similarly, if $B_{11}$ has $4$ columns then so must both the blocks beneath it. This leads to the following dimensions:
+\[
+  A = \left[\begin{array}{@{}c|c|c@{}}
+    $2x10$ & $2x4$ & $2x6$ \\ \hline
+    $4x10$ & $4x4$ & $4x6$
+  \end{array}\right]
+\]
+\[
+  B = \left[\begin{array}{@{}c|c@{}}
+    $10x4$ & $10x3$ \\ \hline
+    $4x4$ & $4x3$  \\ \hline
+    $6x4$ & $6x3$
+  \end{array}\right]
+\]
+\[
+  C = \left[\begin{array}{@{}c|c@{}}
+    $2x4$ & $2x3$ \\ \hline
+    $4x4$ & $4x3$  \\
+  \end{array}\right]
+\]
+
+where it should be clear that each block in the partition scheme from before has the dimensions corresponding to its location in this second set.\\
+
+(c) Writing out the blocks of $C$ as the result of the block multiplications from the last part we have:
+
+\[
+  C = \left[\begin{array}{@{}c|c@{}}
+    A_{11}B_{11}+A_{12}B_{21}+A_{13}B_{31} & A_{11}B_{12}+A_{12}B_{22}+A_{13}B_{32} \\ \hline
+    A_{21}B_{11}+A_{22}B_{21}+A_{23}B_{31} & A_{21}B_{12}+A_{22}B_{22}+A_{23}B_{32} \\
+  \end{array}\right] \,.
+\]
+
+6. Let $A$ be an $m \times n$ matrix.\\
+
+(a) If $\widetilde{Q}\widetilde{R} = A$, the smallest possible $\widetilde{Q}$ is $m \times
+m$ and the smallest possible $\widetilde{R}$ is $m \times n$. Then $\widetilde{Q}\widetilde{R}$ still results in an $m \times n$ matrix. The reason that $\widetilde{Q}$ is $m \times m$ is because its number or rows must equal the number of rows of $A$ and since $\widetilde{Q}$ is orthogonal (or perhaps unitary if we are dealing with complex matrices)it must be square. Because $\widetilde{Q}$ is $m \times m$ this forces $\widetilde{R}$ to have $m$ rows and to also $\widetilde{R}$ must have the same number of columns as $A$.\\
+
+(b)
+\begin{align*}
+d_i^2 &= \tilde{x}_i^T \hat{S}^{-1} \tilde{x}_i \\
+	  &= \tilde{x}_i^T \left(\frac{1}{m-1}\tilde{A}^T \tilde{A} \right)^{-1} \tilde{x}_i \\
+	  &= \tilde{x}_i^T \left(\frac{1}{m-1}(\tilde{Q}\tilde{R})^T\tilde{Q}\tilde{R}\right)^{-1} \tilde{x}_i \\
+	  &= \tilde{x}_i^T \left(\frac{1}{m-1} \tilde{R}^T\tilde{Q}^T\tilde{Q}\tilde{R}\right)^{-1} \tilde{x}_i \\
+	  &= \tilde{x}_i^T \left(\frac{1}{m-1} \tilde{R}^TI\tilde{R}\right)^{-1} \tilde{x}_i \\
+	  &= \tilde{x}_i^T \left(\frac{1}{m-1} \tilde{R}^T\tilde{R}\right)^{-1} \tilde{x}_i \\
+	  &= \tilde{x}_i^T (m-1) \left(\tilde{R}^T\tilde{R}\right)^{-1} \tilde{x}_i \,. \\
+\end{align*}
+
+Since the instructions say not to invert any matrices this is as far as I can go.
+
+\end{document}

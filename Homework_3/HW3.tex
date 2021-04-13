@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+
+\begin{document}
+\title{CFRM Homework 3}
+\author{Dane Johnson}
+\date{\today}
+\maketitle
+
+1. The Black-Scholes price for a European put option is
+$$P(S,t,K,T,r,q,\sigma) = Ke^{-r(T-t)}\Phi(-d_-)-Se^{-q(T-t)}\Phi(-d_+)$$
+where
+$$d_+ = \frac{log(\frac{S}{K}) + (r-q+\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}$$
+and
+$$d_- = d_+ - \sigma\sqrt{T-t} = \frac{log(\frac{S}{K}) + (r-q-\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}$$
+Please note that I will use the following equality throughout
+$$\Phi'(d_\pm) = \phi(d_\pm) = \frac{1}{\sqrt{2\pi}}e^{\frac{-d_\pm^2}{2}}$$
+(a) \begin{align*}
+\Delta (P) = \frac{\partial P}{\partial S} & = \frac{\partial}{\partial S} [Ke^{-r(T-t)}\Phi(-d_-)-Se^{-q(T-t)}\Phi(-d_+)] \\ & = Ke^{-r(T-t)}\frac{\partial}{\partial S} \Phi(-d_-) - e^{-q(T-t)}\Phi(-d_+) - Se^{-q(T-t)} \frac{\partial}{\partial S} \Phi(-d_+) \\ & = Ke^{-r(T-t)} \phi(-d_-) \frac{\partial}{\partial S} (-d_-) - e^{-q(T-t)}\Phi(-d_+) - Se^{-q(T-t)} \phi(-d_+) \frac{\partial}{\partial S} (-d_+) \\
+& = Ke^{-r(T-t)} \phi(d_-) \frac{\partial}{\partial S} (-d_-) - e^{-q(T-t)}\Phi(-d_+) - Se^{-q(T-t)} \phi(d_+) \frac{\partial}{\partial S} (-d_+) \\
+& = Se^{-q(T-t)}\phi(d_+) \frac{\partial}{\partial S} (-d_-)- e^{-q(T-t)}\Phi(-d_+) - Se^{-q(T-t)} \phi(d_+) \frac{\partial}{\partial S} (-d_+) \quad(**)\\
+& = - e^{-q(T-t)}\Phi(-d_+) - Se^{-q(T-t)} \phi(d_+) \frac{\partial}{\partial S} (d_+ - d_-) \\
+& = - e^{-q(T-t)}\Phi(-d_+) - Se^{-q(T-t)} \phi(d_+) \frac{\partial}{\partial S} (d_+ - d_+ + \sigma\sqrt{T-t}) \\
+& = - e^{-q(T-t)}\Phi(-d_+)
+\end{align*}
+
+(**) Lemma 3.15 was used here: $Ke^{-r(T-t)} \phi(d_-) = Se^{-q(T-t)} \phi(d_+)$ \\
+
+
+The result matches the given expression for $\Delta P$ in the text.\\
+
+Using Put-Call parity we have
+\begin{align*}
+\frac{\partial P}{\partial S} & = \frac{\partial }{\partial S} \left[C - Se^{-q(T-t)} + Ke^{-r(T-t)} \right] \\
+& = \frac{\partial C}{\partial S} - e^{-q(T-t)}
+\end{align*}
+
+Substituting our previous result leads to 
+$$ \frac{\partial C}{\partial S} = - e^{-q(T-t)}\Phi(-d_+) + e^{-q(T-t)}$$
+$$ = - e^{-q(T-t)}(1-\Phi(d_+)) + e^{-q(T-t)}$$
+$$ = e^{-q(T-t)}\Phi(d_+)$$
+This result agrees with the given value for the delta of a call option in the text. \\
+
+(b) 
+\begin{align*}
+\Gamma(P) = \frac{\partial^2 P}{\partial S^2} &= \frac{\partial^2}{\partial S^2} [Ke^{-r(T-t)}\Phi(-d_-)-Se^{-q(T-t)}\Phi(-d_+)] \\
+& = \frac{\partial}{\partial S} [-e^{-q(T-t)}\Phi(-d_+)] \quad (by \, part \, (a)) \\
+& = -e^{-q(T-t)}\Phi'(-d_+) \frac{\partial}{\partial S} [-d_+] \\ & = -e^{-q(T-t)}\phi(-d_+)(-1)\frac{\partial}{\partial S} [d_+] \quad(*)\\
+& = \frac{e^{-q(T-t)}\phi(d_+)}{S\sigma\sqrt{T-t}}
+\end{align*}
+
+(*)Where $\frac{\partial}{\partial S} [d_+]$ is given by
+\begin{align*}
+\frac{\partial}{\partial S} [d_+] &= \frac{\partial}{\partial S} \left[\frac{log(\frac{S}{K}) + (r-q+\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}\right] \\
+& = \frac{1}{\sigma\sqrt{T-t}}\frac{1}{\frac{S}{K}}\frac{1}{K} \\ 
+&= \frac{1}{S\sigma\sqrt{T-t}}
+\end{align*}
+Using Put-Call parity
+\begin{align*}
+\Gamma(P) = \frac{\partial^2 P}{\partial S^2} &= \frac{\partial^2}{\partial S^2} [C-Se^{-q(T-t)} + Ke^{-r(T-t)}] \\ & = \frac{\partial^2 C}{\partial S^2} \,.
+\end{align*}
+The gamma of a European put option is the same as the gamma of the European call option (for the same underlying asset).\\
+
+(c)
+\begin{align*}
+\Theta(P) = \frac{\partial P}{\partial t} & = \frac{\partial}{\partial t} [Ke^{-r(T-t)}\Phi(-d_-)-Se^{-q(T-t)}\Phi(-d_+)] \\ & = rKe^{-r(T-t)}\Phi(-d_-) + Ke^{-r(T-t)}\Phi'(-d_-)\frac{\partial}{\partial t} [-d_-] - qSe^{-q(T-t)}\Phi(-d_+) \\ & \quad\quad\quad - Se^{-q(T-t)}\Phi'(-d_+)\frac{\partial}{\partial t} [-d_+] \\
+& = rKe^{-r(T-t)}\Phi(-d_-) - Ke^{-r(T-t)}\phi(d_-)\frac{\partial}{\partial t} [d_-]- qSe^{-q(T-t)}\Phi(-d_+) \\ & \quad\quad\quad + Se^{-q(T-t)}\phi(d_+)\frac{\partial}{\partial t} [d_+] \\
+& = rKe^{-r(T-t)}\Phi(-d_-) - Se^{-q(T-t)}\phi(d_+)\frac{\partial}{\partial t} [d_-]- qSe^{-q(T-t)}\Phi(-d_+)\quad(**) \\ & \quad\quad\quad + Se^{-q(T-t)}\phi(d_+)\frac{\partial}{\partial t} [d_+] \\ & = rKe^{-r(T-t)}\Phi(-d_-)- qSe^{-q(T-t)}\Phi(-d_+) + Se^{-q(T-t)}\phi(d_+)\frac{\partial}{\partial t} [-d_- + d_+] \\
+& = rKe^{-r(T-t)}\Phi(-d_-)- qSe^{-q(T-t)}\Phi(-d_+) - \frac{\sigma Se^{-q(T-t)}\phi(d_+)}{2\sqrt{T-t}}\;.
+\end{align*}
+For this last line we used
+\begin{align*}
+\frac{\partial}{\partial t} [-d_- + d_+] &= -\frac{\partial}{\partial t} [d_-] + \frac{\partial}{\partial t} [d_+] \\
+& = -\frac{\partial}{\partial t} [d_+ - \sigma\sqrt{T-t}] + \frac{\partial}{\partial t} [d_+] \\
+& = \frac{\partial}{\partial t} [\sigma\sqrt{T-t} -d_+ +d_+]\\ & = -\frac{\sigma}{2\sqrt{T-t}} \;.
+\end{align*}
+(**) Lemma 3.15 was used here: $Ke^{-r(T-t)} \phi(d_-) = Se^{-q(T-t)} \phi(d_+)$ \\
+
+Using Put-Call parity we have
+\begin{align*}
+\Theta(P) = \frac{\partial P}{\partial t} & = \frac{\partial}{\partial t} [C-Se^{-q(T-t)} + Ke^{-r(T-t)}] \\ & = \frac{\partial C}{\partial t} - qSe^{-q(T-t)} + rKe^{-r(T-t)}
+\end{align*}
+Substituting our previous result leads to 
+$$\frac{\partial C}{\partial t} = rKe^{-r(T-t)}\Phi(-d_-)- qSe^{-q(T-t)}\Phi(-d_+) - \frac{\sigma Se^{-q(T-t)}\phi(d_+)}{2\sqrt{T-t}} $$
+$$ \quad \quad + qSe^{-q(T-t)} - rKe^{-r(T-t)} $$
+$$ = rKe^{-r(T-t)}(1-\Phi(d_-))- qSe^{-q(T-t)}(1-\Phi(d_+)) - \frac{\sigma Se^{-q(T-t)}\phi(d_+)}{2\sqrt{T-t}}$$
+$$\quad\quad + qSe^{-q(T-t)} - rKe^{-r(T-t)}$$
+$$ = -rKe^{-r(T-t)}\Phi(d_-) + qSe^{-q(T-t)}\Phi(d_+) - \frac{\sigma Se^{-q(T-t)}\phi(d_+)}{2\sqrt{T-t}} \;.$$ 
+This agrees with the given value for the theta of a call option in the text.\\
+
+(d)
+\begin{align*}
+\rho(P) &= \frac{\partial P}{\partial r}\\ & =\frac{\partial}{\partial r} [Ke^{-r(T-t)}\Phi(-d_-)-Se^{-q(T-t)}\Phi(-d_+)]  \\ & = \frac{\partial}{\partial r} [Ke^{-r(T-t)}\Phi(-d_-)-Se^{-q(T-t)}\Phi(-d_+)]\\& = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Ke^{-r(T-t)}\Phi'(-d_-)\frac{\partial}{\partial r} [-d_-] - Se^{-q(T-t)}\Phi'(-d_+)\frac{\partial}{\partial r} [-d_+] \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Ke^{-r(T-t)}\phi(-d_-)\frac{\partial}{\partial r} [-d_-] - Se^{-q(T-t)}\phi(-d_+)\frac{\partial}{\partial r} [-d_+] \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Ke^{-r(T-t)}\phi(d_-)\frac{\partial}{\partial r} [-d_-] - Se^{-q(T-t)}\phi(d_+)\frac{\partial}{\partial r} [-d_+]  \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Se^{-q(T-t)}\phi(d_+) \frac{\partial}{\partial r} [-d_-] - Se^{-q(T-t)}\phi(d_+)\frac{\partial}{\partial r} [-d_+] \quad(**) \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Se^{-q(T-t)}\phi(d_+) \frac{\partial}{\partial r} [d_+ - d_-] \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Se^{-q(T-t)}\phi(d_+) \frac{\partial}{\partial r}[d_+ - (d_+ - \sigma\sqrt{T-t})] \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) + Se^{-q(T-t)}\phi(d_+) \frac{\partial}{\partial r} [\sigma\sqrt{T-t}] \\ & = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) \;.
+\end{align*}
+
+(**) Lemma 3.15 was used here: $Ke^{-r(T-t)} \phi(d_-) = Se^{-q(T-t)} \phi(d_+)$\\
+
+Using Put-Call parity we have
+\begin{align*}
+\rho(P) = \frac{\partial P}{\partial r} &= \frac{\partial}{\partial r} [C - Se^{-q(T-t)} + Ke^{-r(T-t)}] \\ & = \frac{\partial C}{\partial r} - (T-t)Ke^{-r(T-t)} \;.
+\end{align*}
+Substituting the previous result for $\frac{\partial P}{\partial r}$ leads to 
+$$ \frac{\partial C}{\partial r} = -(T-t)Ke^{-r(T-t)}\Phi(-d_-) - (T-t)Ke^{-r(T-t)}$$
+$$ \frac{\partial C}{\partial r} = (T-t)Ke^{-r(T-t)}\Phi(d_+)$$
+This matches the $\rho(C)$ in the text.
+\end{document}

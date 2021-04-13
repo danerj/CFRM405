@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+
+\begin{document}
+\title{CFRM Homework 1}
+\author{Dane Johnson}
+\date{\today}
+\maketitle
+
+1. Compute the following limits.\\
+
+(a)$$\lim_{h\to0} \frac{4(x+h-3)^2 - 4(x-3)^2}{h}$$
+$$ = 4\lim_{h\to0} \frac{(x+h)^2 - 6(x+h) + x - x^2 + 6x - 9}{h}$$
+$$ = 4\lim_{h\to0} \frac{x^2+2hx+h^2 - 6x - 6h + x - x^2 + 6x - 9}{h}$$
+$$ = 4\lim_{h\to0} \frac{2hx + h^2 - 6h}{h}$$
+$$ = 4\lim_{h\to0} 2x + h - 6$$
+$$ = 8x - 24. $$
+
+(b)$$\lim_{x\to\infty} \frac{1}{\sqrt{4x^2-2x-10}+2x}$$
+$$=\lim_{x\to\infty} \frac{\frac{1}{4x^4}}{\frac{1}{4x^4}(\sqrt{4x^2-2x-10}+2x)}$$
+$$=\lim_{x\to\infty} \frac{\frac{1}{4x^4}}{\sqrt{4-\frac{2}{x}-\frac{10}{x^2}}+\frac{2}{x^3}}$$
+$$ = \frac{\lim_{x\to\infty}\frac{1}{4x^4}}{\lim_{x\to\infty}\sqrt{4-\frac{2}{x}-\frac{10}{x^2}}+\frac{2}{x^3}}$$
+$$=\frac{0}{\sqrt{4 - 0 - 0} + 0}$$
+$$=\frac{0}{4} = 0.$$
+
+2. Compute the derivatives of the following functions.\\
+
+(a)	$f(x) = \frac{1}{1-x}$
+$$f'(x) = -(1-x)^{-2}(-1)$$
+$$		= \frac{1}{(1-x)^2}\:.$$
+
+(b)	$f(x) = \sum\limits_{n=1}^{7} ke^{-a_kx^3},\quad (\{a_k\} \: constant)$
+$$f'(x) = \sum\limits_{n=1}^{7} ke^{-a_kx^3}(-3a_kx^2)$$
+$$ = \sum\limits_{n=1}^{7} -3a_kkx^2e^{-a_kx^3}.$$
+
+(c)	$f(x) = \frac{\log(\frac{x}{K}) + (r-q+\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}},  (K,r,q,\sigma > 0\: and\: T>t \: constant).$
+$$[\:Rewrite : f(x)=\frac{\log(\frac{x}{K})}{\sigma\sqrt{T-t}} + \frac{(r-q+\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}\:]$$
+$$f'(x) = \frac{1}{\sigma\sqrt{T-t}}\frac{1}{\frac{x}{K}}\frac{1}{K} + 0$$
+$$=\frac{1}{x\sigma\sqrt{T-t}}\:.$$
+
+(d) $f(x) = \frac{\log(\frac{S}{K}) + (r-q+\frac{x^2}{2})(T-t)}{x\sqrt{T-t}}\quad(S>0,K>0,r,q\: and \: T>t \: constant).$
+$$[\:Rewrite : f(x) = \frac{\log(\frac{S}{K})}{\sqrt{T-t}}\frac{1}{x} + \frac{T-t}{\sqrt{T-t}}\frac{r-q-\frac{x^2}{2}}{x}\:]$$
+$$f'(x) = \frac{-log(\frac{S}{K})}{\sqrt{T-t}}\frac{1}{x^2} + \frac{T-t}{\sqrt{T-t}}\frac{x^2-(r-q+\frac{x^2}{2})}{x^2}$$
+$$=\frac{-log(\frac{S}{K}) + (T-t)(\frac{x^2}{2}-r+q)}{x^2\sqrt{T-t}}\:.$$
+
+(e)	$f(x) = \frac{\log(\frac{S}{K}) + (x-q+\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}\quad(S>0,K>0,\sigma,q>0\: and \: T>t \: constant).$
+$$[\:Rewrite : f(x) = \frac{log(\frac{S}{K})}{\sigma\sqrt{T-t}} + \frac{(x-q+\frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}}\:]$$
+$$f'(x) = 0 + \frac{T-t}{\sigma\sqrt{T-t}} = \frac{T-t}{\sigma\sqrt{T-t}}\:.$$
+
+3.\\
+
+(a) By inspection we can see that 2(c) corresponds to $\frac{\partial}{\partial S}[d_+(\cdot)]$, 2(d) corresponds to $\frac{\partial}{\partial \sigma}[d_+(\cdot)]$, and 2(e) corresponds to $\frac{\partial}{\partial r}[d_+(\cdot)]$.
+
+(b)
+$$\frac{\partial}{\partial t}[d_+(\cdot)] = \frac{\partial}{\partial t}\left[\frac{log(\frac{S}{K})}{\sigma\sqrt{T-t}}\right] + \frac{\partial}{\partial t}\left[\frac{r-q+\frac{\sigma^2}{2}}{\sigma}\sqrt{T-t}\right]$$
+$$=-\frac{1}{2}\frac{log(\frac{S}{K})}{\sigma(T-t)^\frac{3}{2}}(-1) + \frac{1}{2}\frac{r-q+\frac{\sigma^2}{2}}{\sigma}\frac{1}{\sqrt{T-t}}(-1)$$
+$$=\frac{log(\frac{S}{K})-(r-q+\frac{\sigma^2}{2})(T-t)}{2\sigma(T-t)^\frac{3}{2}}\:.$$
+
+4. Compute the following indefinite integrals.\\
+
+(a)	$\int x^2log(x)\,dx$
+$$=\frac{x^3}{3}log(x) - \int \frac{x^3}{3}\frac{1}{x}\,dx$$
+$$=\frac{x^3}{3}log(x) - \int \frac{x^2}{3}\,dx$$
+$$=\frac{x^3log(x)}{3} - \frac{1}{9}x^3 + c.$$
+
+(b)	$\int x^2e^x\,dx$
+$$=x^2e^x - \int 2xe^x\,dx$$
+$$=x^2e^x - 2(xe^x - \int e^x\,dx)$$
+$$=x^2e^x-2xe^x+2e^x+c$$
+$$=e^x(x^2-2x+2)+c.$$
+
+(c)	$\int [log(x)]^2\,dx = \int log(x)log(x)\,dx$
+$$=(xlog(x)-x)log(x)-\int(xlog(x)-x)\frac{1}{x}\,dx$$
+$$=xlog(x)(log(x)-1)-\int(log(x)-1)\,dx$$
+$$xlog(x)(log(x)-1)-x(log(x)-1)+x+c$$
+$$=xlog^2(x)-xlog(x)-xlog(x)+x+x+c$$
+$$=x(log^2(x)-2log(x)+2)+c.$$
+
+5. Evaluate the following definite integrals.\\
+
+(a)	$\int_{4}^{7} x^2log(x)\,dx$
+$$= \left(\frac{x^3log(x)}{3} - \frac{1}{9}x^3\right)\Big|_4^7$$
+$$= \frac{343log(7)}{3} - \frac{343}{9} -\frac{64log(4)}{3} + \frac{64}{9}$$
+$$=\frac{343log(7) - 64log(4)}{3} - 31 \approx 161.91.$$
+
+(b) $\int_{0}^{2} \frac{1}{(1+x)^2}\,dx$
+$$=-\frac{1}{1+x}\Big|_0^2$$
+$$=-\frac{1}{3} + \frac{1}{1} = \frac{2}{3}\:.$$
+\end{document}
